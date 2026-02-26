@@ -17,32 +17,97 @@ import Contact from './pages/Contact'
 import Checkout from './pages/Checkout'
 import MyOrders from './pages/MyOrders'
 import AdminOrders from './pages/AdminOrders'
-
+import ProtectedRoute from './pages/ProtectedRoute'
 
 
 function App() {
   return (
     <>
-      <Navbar />
+      <Navbar />   {/* ✅ Outside Routes */}
+
       <Routes>
-        <Route path="/payment" element={<Checkout />} />
+
+        {/* Public Routes */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/sendotp" element={<Verify />} />
+
+        {/* User Protected Routes */}
+        <Route
+          path="/ProductList"
+          element={
+            <ProtectedRoute role="user">
+              <ProductList />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute role="user">
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/myorder"
+          element={
+            <ProtectedRoute role="user">
+              <MyOrders />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Admin Protected Routes */}
+        <Route
+          path="/admin/products"
+          element={
+            <ProtectedRoute role="admin">
+              <AdminProducts />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/admin/editproduct/:id"
+          element={
+            <ProtectedRoute role="admin">
+              <EditProduct />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/AddProduct"
+          element={
+            <ProtectedRoute role="admin">
+              <CreateProduct />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route
+          path="/orders"
+          element={
+            <ProtectedRoute role="admin">
+              <AdminOrders />
+            </ProtectedRoute>
+          }
+        />
+
+        {/* Public Pages */}
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/sendotp" element={<Verify />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path='/AddProduct' element={<CreateProduct />} />
-        <Route path="/ProductList" element={<ProductList />} />
+        <Route path="/payment" element={<Checkout />} />
         <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/admin/products" element={<AdminProducts />} />
-        <Route path="/admin/editproduct/:id" element={<EditProduct />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path='/myorder' element={<MyOrders />} />
-        <Route path='/orders' element={<AdminOrders />} />
+
       </Routes>
     </>
+
   )
 }
 
