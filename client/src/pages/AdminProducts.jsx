@@ -25,11 +25,7 @@ const AdminProducts = () => {
 
     const deleteProduct = async (id) => {
         try {
-            await axios.delete(
-                `http://localhost:5000/api/product/${id}`,
-                { withCredentials: true }
-            );
-            alert('Product deleted successfully');
+            await axios.delete(`http://localhost:5000/api/product/${id}`, { withCredentials: true });
             fetchProducts();
         } catch (error) {
             console.log(error);

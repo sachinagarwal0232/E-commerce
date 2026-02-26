@@ -1,21 +1,17 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
-
+import axios from "axios";
 const Navbar = () => {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user"));
 
-    const logout = () => {
+    const logout = async () => {
+        await axios.post("http://localhost:5000/api/users/logout", {}, { withCredentials: true });
         localStorage.removeItem("user");
         navigate("/login");
     };
 
-    // const scrollToSection = (id) => {
-    //     const section = document.getElementById(id);
-    //     if (section) {
-    //         section.scrollIntoView({ behavior: "smooth" });
-    //     }
-    // };
+
     return (
         <header className="bg-white shadow-md sticky top-0 z-50">
             <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
@@ -52,6 +48,8 @@ const Navbar = () => {
                             <Link to="/AddProduct" className="hover:text-indigo-600">
                                 Add Product
                             </Link>
+
+                            <Link to="/orders">Manage Orders</Link>
                         </>
                     )}
 
@@ -63,6 +61,10 @@ const Navbar = () => {
                             <Link to="/cart" className="hover:text-indigo-600">
                                 Cart
                             </Link>
+                            <Link to="/myorder" className="hover:text-indigo-600">
+                                Orders
+                            </Link>
+
                         </>
                     )}
 

@@ -14,6 +14,9 @@ import Dashboard from './pages/Dashboard'
 import Home from './pages/Home'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import Checkout from './pages/Checkout'
+import MyOrders from './pages/MyOrders'
+import AdminOrders from './pages/AdminOrders'
 
 
 
@@ -22,6 +25,7 @@ function App() {
     <>
       <Navbar />
       <Routes>
+        <Route path="/payment" element={<Checkout />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
@@ -30,13 +34,13 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path='/AddProduct' element={<CreateProduct />} />
-        {/* <Route path='/AddProduct/:id' element={<CreateProduct />} /> */}
-
         <Route path="/ProductList" element={<ProductList />} />
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/admin/products" element={<AdminProducts />} />
         <Route path="/admin/editproduct/:id" element={<EditProduct />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path='/myorder' element={<MyOrders />} />
+        <Route path='/orders' element={<AdminOrders />} />
       </Routes>
     </>
   )

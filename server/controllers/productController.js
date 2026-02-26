@@ -15,7 +15,6 @@ const addproduct = async (req, res) => {
                 folder: 'ecommerce'
 
             })
-
             imageurl.push(result.secure_url);
             fs.unlinkSync(file.path);
         }
@@ -73,9 +72,11 @@ const updateproduct = async (req, res) => {
 
 const deleteproduct = async (req, res) => {
     try {
+
         const products = await product.findByIdAndDelete(req.params.id);
         if (!products) {
             return res.status(404).json({ msg: 'Product Not found' })
+
         }
         res.json({ msg: 'Product Deleted Successfully', products })
     } catch (error) {

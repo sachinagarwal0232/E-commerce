@@ -6,7 +6,7 @@ const cors = require("cors");
 const router = require("./routers/userRoutes");
 const cookieParser = require("cookie-parser");
 const prouter = require("./routers/productRoutes");
-
+const orderRouter = require("./routers/orderRoutes");
 
 // Middlewares
 app.use(express.json());
@@ -20,6 +20,7 @@ app.use(cookieParser());
 
 app.use('/api/users', router);
 app.use('/api', prouter);
+app.use('/api', orderRouter);
 
 
 mongoose.connect(process.env.MONGO_URL)

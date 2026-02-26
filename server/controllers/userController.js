@@ -79,11 +79,20 @@ const loginUser = async (req, res) => {
         const token = jwt.sign({ id: newuser._id, role: newuser.role }, process.env.JWT_SECRET, { expiresIn: '1d' });
         res.cookie('token', token);
         res.json({ msg: 'Login Successfull', newuser, token })
-        
+
     } catch (error) {
         res.status(500).json({ msg: error.message });
     }
 }
 
 
-module.exports = { registerUser, loginUser, sendotp, verifyotp }
+const logoutUser = async (req, res) => {
+    try {
+        res.clearCookie('token');
+        res.json({ msg: 'Logout Successfull' })
+    } catch (error) {
+        res.status(500).json({ msg: error.message });
+    }
+}
+
+module.exports = { registerUser, loginUser, sendotp, verifyotp, logoutUser }

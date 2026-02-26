@@ -25,7 +25,7 @@ const EditProduct = () => {
     };
 
     useEffect(() => {
-        fetchedsingleproduct()
+        fetchedsingleproduct();
     }, []);
 
     const handleChange = (e) => {
